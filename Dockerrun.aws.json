@@ -1,0 +1,40 @@
+{
+	"AWSEBDockerrunVersion": 2,
+
+	"containerDefinitions": [{
+			"name": "client",
+			"image": "ahmedfarouk141414/multi-client",
+			"hostname": "client",
+			"essential": false
+
+		},
+
+		{
+			"name": "server",
+			"image": "ahmedfarouk141414/server",
+			"hostname": "client",
+			"essential": false
+		},
+
+		{
+			"name": "worker",
+			"image": "ahmedfarouk141414/worker",
+			"hostname": "worker",
+			"essential": false
+		},
+
+		{
+			"name": "nginx",
+			"image": "ahmedfarouk141414/nginx",
+			"hostname": "nginx",
+			"essential": true,
+			"portMappings": [{
+				"hostPort": 80,
+				"containerPort": 80
+			}],
+			"links": ["client", "server"]
+		}
+
+	]
+}
+
